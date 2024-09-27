@@ -3,15 +3,20 @@
  */
 module.exports = {
   siteMetadata: {
-    title: `petBlog`,
+    title: `Joe's Blog`,
     siteUrl: `https://www.yourdomain.tld`
   },
-  plugins: ["gatsby-plugin-mdx", {
-    resolve: 'gatsby-source-filesystem',
-    options: {
-      "name": "pages",
-      "path": "./src/pages/"
+  plugins: [
+    "gatsby-plugin-image",
+    "gatsby-plugin-sharp",
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `blog`,
+        path: `${__dirname}/blog/`,
+      },
     },
-    __key: "pages"
-  }]
+    "gatsby-plugin-mdx",
+    "gatsby-transformer-sharp",
+  ],
 };

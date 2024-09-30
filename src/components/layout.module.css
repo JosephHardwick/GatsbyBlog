@@ -1,27 +1,53 @@
-.container {
-    margin: auto;
-    max-width: 500px;
-    font-family: sans-serif;
-  }
-  
-  .heading {
-    color: rebeccapurple;
-  }
-  .nav-links {
-    display: flex;
-    list-style: none;
-    padding-left: 0;
-  }
-  .nav-link-item {
-    padding-right: 2rem;
-  }
-  .nav-link-text {
-    color: black;
-  }
+body {
+  background-color: light gray /* Light gray background for the entire page */
+}
 
-  .site-title {
-    font-size: 3rem;
-    color: gray;
-    font-weight: 700;
-    margin: 3rem 0;
-  }
+.container {
+  margin: auto;
+  max-width: 500px;
+  font-family: sans-serif;
+  background-color: white; /* White background for the container */
+  padding: 20px; /* Add padding inside the container */
+  border-radius: 10px; /* Rounded corners for the container */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for the container */
+}
+
+.heading {
+  color: #6CB4EE;
+  font-size: 2rem; /* Increase font size */
+  margin-bottom: 1rem; /* Add space below the heading */
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 1rem; /* Add space below the navigation links */
+}
+
+.nav-link-item {
+  padding-right: 2rem;
+}
+
+.nav-link-text {
+  color: black;
+  text-decoration: none; /* Remove underline from links */
+  font-weight: bold; /* Make the text bold */
+  transition: color 0.3s, transform 0.3s; /* Smooth transition for color and transform */
+}
+
+.nav-link-text:hover {
+  color: #6CB4EE; /* Change color on hover */
+  transform: translateY(-5px); /* Move the link up by 5px */
+
+}
+
+.site-title {
+  font-size: 3rem;
+  color: black;
+  font-weight: 700;
+  margin: 3rem 0;
+  text-align: center; /* Center the site title */
+  text-transform: uppercase; /* Make the text uppercase */
+  letter-spacing: 2px; /* Add spacing between letters */
+}

@@ -4,10 +4,10 @@ const path = require('path')
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
-  const result = await graphql(`
+  const recipeQ = await graphql(`
     query {
       Drupal {
-        nodeRecipes(first: 100) {
+        nodeRecipes(first: 10) {
           nodes {
             id
             title
@@ -17,14 +17,40 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `)
 
-  const recipeTemplate = path.resolve('src/pages/recipe-template.js')
+  const articleQ = await graphql(`
+    query {
+    Drupal {
+    nodeArticles(first: 8) {
+      nodes {
+        title
+        id
+      }
+    }
+  }
+  }
+  `)
 
-  result.data.Drupal.nodeRecipes.nodes.forEach(recipe => {
+
+  
+  const recipeTemplate = path.resolve('src/templates/recipe-template.js')
+  const articleTemplate = path.resolve('src/templates/article-template.js')
+
+  recipeQ.data.Drupal.nodeRecipes.nodes.forEach(recipe => {
     createPage({
       path: `/recipe/${recipe.id}`,
       component: recipeTemplate,
       context: {
         id: recipe.id,
+      },
+    })
+  })
+
+  articleQ.data.Drupal.nodeArticles.nodes.forEach(article => {
+    createPage({
+      path: `/article/${article.id}`,
+      component: articleTemplate,
+      context: {
+        id: article.id,
       },
     })
   })

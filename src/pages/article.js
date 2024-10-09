@@ -4,15 +4,15 @@ import { StaticImage } from 'gatsby-plugin-image'
 import Seo from '../components/seo'
 import { graphql, Link } from 'gatsby';
 
-const RecipePage = ({ data }) => {
-  const recipes = data?.Drupal?.nodeRecipes?.nodes || [];
+const ArticlePage = ({ data }) => {
+  const articles = data?.Drupal?.nodeArticles?.nodes || [];
 
   return (
-    <Layout pageTitle="Recipes">
+    <Layout pageTitle="Articles">
       <ul>
-        {recipes.map((recipe, index) => (
+        {articles.map((article, index) => (
           <li key={index}>
-            <Link to={`/recipe/${recipe.id}`}>{recipe.title}</Link>
+            <Link to={`/article/${article.id}`}>{article.title}</Link>
           </li>
         ))}
       </ul>
@@ -22,17 +22,17 @@ const RecipePage = ({ data }) => {
 
 export const query = graphql`
   query MyQuery {
-    Drupal {
-      nodeRecipes(first: 100) {
-        nodes {
-          id
-          title
-        }
+  Drupal {
+    nodeArticles(first: 8) {
+      nodes {
+        id
+        title
       }
     }
   }
+}
 `
 
 export const Head = () => <Seo title="Home Page" />
 
-export default RecipePage
+export default ArticlePage

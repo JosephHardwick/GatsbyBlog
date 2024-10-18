@@ -40,7 +40,7 @@ jobs:
             port: ${{ secrets.PORT }}
             source: "./public"
             target: "/home/student07/site/html/"
-            strip_components: 1 # this is important
+            strip_components: 2 # this is important
 
       - name: Restart Docker Container
         uses: appleboy/ssh-action@v0.1.4

@@ -20,6 +20,10 @@ jobs:
       - name: Install Gatsby CLI
         run: npm install -g gatsby-cli@2.12.34
 
+      - name: Install additional gatsby dependancies
+        run: npm install gatsby-plugin-image gatsby-plugin-sharp gatsby-source-filesystem gatsby-source-graphql gatsby-plugin-mdx gatsby-transformer-sharp
+
+
       - name: Build
         run: gatsby build --prefix-paths
 
@@ -38,3 +42,12 @@ jobs:
             target: "/home/student07/site/html/"
             strip_components: 1 # this is important
 
+      - name: Restart Docker Container
+        uses: appleboy/ssh-action@v0.1.4
+        with:
+          host: ${{ secrets.IP }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            docker restart student07

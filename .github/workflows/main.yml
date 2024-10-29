@@ -21,7 +21,7 @@ jobs:
         run: npm install -g gatsby-cli@2.12.34
 
       - name: Install additional gatsby dependancies
-        run: npm install gatsby-plugin-image gatsby-plugin-sharp gatsby-source-filesystem gatsby-source-graphql gatsby-plugin-mdx gatsby-transformer-sharp
+        run: npm install gatsby-source-graphql gatsby-plugin-image gatsby-plugin-sharp gatsby-source-filesystem gatsby-plugin-mdx gatsby-transformer-sharp
 
 
       - name: Build

@@ -17,7 +17,7 @@ const RecipeTemplate = ({ data }) => {
       <p><strong>Preparation Time:</strong> {recipe.preparationTime} minutes</p>
       <p><strong>Number of Servings:</strong> {recipe.numberOfServings}</p>
       <h2>Ingredients</h2>
-      <ul>
+      <ul data-testid="ingredients-list">
         {recipe.ingredients.map((ingredient, index) => (
           <li key={index}>{ingredient}</li>
         ))}

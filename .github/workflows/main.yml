@@ -30,19 +30,29 @@ jobs:
       - name: Verify build
         run: ls -la public
 
-      - name: copy file via ssh key
-        uses: appleboy/scp-action@v0.1.0
+      # - name: copy file via ssh key
+      #   uses: appleboy/scp-action@v0.1.0
       
-        with:
-            host: ${{ secrets.IP }}
-            username: ${{ secrets.USER }}
-            key: ${{ secrets.PRIVATE_KEY }}
-            port: ${{ secrets.PORT }}
-            source: "./public"
-            target: "/home/student07/site/html/"
-            strip_components: 2 # this is important
+      #   with:
+      #       host: ${{ secrets.IP }}
+      #       username: ${{ secrets.USER }}
+      #       key: ${{ secrets.PRIVATE_KEY }}
+      #       port: ${{ secrets.PORT }}
+      #       source: "./public"
+      #       target: "/home/student07/site/html/"
+      #       strip_components: 2 # this is important
 
-      - name: Restart Docker Container
+      # - name: Restart Docker Container
+      #   uses: appleboy/ssh-action@v0.1.4
+      #   with:
+      #     host: ${{ secrets.IP }}
+      #     username: ${{ secrets.USER }}
+      #     key: ${{ secrets.PRIVATE_KEY }}
+      #     port: ${{ secrets.PORT }}
+      #     script: |
+      #       docker restart student07
+
+      - name: Clear target directory and copy files via SSH
         uses: appleboy/ssh-action@v0.1.4
         with:
           host: ${{ secrets.IP }}
@@ -50,4 +60,32 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            docker restart student07
+            rm -rf /home/student07/site/temp/*
+            rm -rf /home/student07/site/html/*
+      
+      - name: Copy files to temporary directory via SSH
+        uses: appleboy/scp-action@v0.1.0
+        with:
+          host: ${{ secrets.IP }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: ${{ secrets.PORT }}
+          source: "./public"
+          target: "/home/student07/site/temp/"
+          strip_components: 2
+      
+      - name: Move files to the correct directory and start Docker container if necessary
+        uses: appleboy/ssh-action@v0.1.4
+        with:
+          host: ${{ secrets.IP }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            mv /home/student07/site/temp/* /home/student07/site/html/
+            if [ ! $(docker ps -q -f name=student07) ]; then
+              docker start student07
+            fi
+
+    
+  

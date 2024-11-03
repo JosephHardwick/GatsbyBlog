@@ -7,8 +7,7 @@ const IndexPage = () => {
   return (
     <Layout pageTitle="Home Page">
       <p>I'm making this by following the Gatsby Tutorial.</p>
-      <p>If you're seeing this github actions worked! 3</p>
-      <p>Atomic Actions! woahh!!</p>
+      <p>Atomic Actions! woahh!! (test 2)</p>
       <StaticImage
         alt="Clifford, a reddish-brown pitbull, posing on a couch and looking stoically at the camera"
         src="../images/Baxter.jpg"

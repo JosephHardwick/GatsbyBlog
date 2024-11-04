@@ -23,6 +23,7 @@ body {
   list-style: none;
   padding-left: 0;
   margin-bottom: 1rem; /* Add space below the navigation links */
+  justify-content: center;
 }
 
 .nav-link-item {

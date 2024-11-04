@@ -12,7 +12,7 @@ const ArticleTemplate = ({ data }) => {
       
     <div>
         <img src={article.mediaImage.mediaImage.url} alt={article.title} style={{ maxWidth: '100%' }}/>
-        <h1>{article.title}</h1>
+        
         <p>By {article.author.displayName}</p>
         <p>{new Date(article.created).toLocaleDateString()}</p>
         <div dangerouslySetInnerHTML={{ __html: article.body.processed }} />

@@ -30,28 +30,6 @@ jobs:
       - name: Verify build
         run: ls -la public
 
-      # - name: copy file via ssh key
-      #   uses: appleboy/scp-action@v0.1.0
-      
-      #   with:
-      #       host: ${{ secrets.IP }}
-      #       username: ${{ secrets.USER }}
-      #       key: ${{ secrets.PRIVATE_KEY }}
-      #       port: ${{ secrets.PORT }}
-      #       source: "./public"
-      #       target: "/home/student07/site/html/"
-      #       strip_components: 2 # this is important
-
-      # - name: Restart Docker Container
-      #   uses: appleboy/ssh-action@v0.1.4
-      #   with:
-      #     host: ${{ secrets.IP }}
-      #     username: ${{ secrets.USER }}
-      #     key: ${{ secrets.PRIVATE_KEY }}
-      #     port: ${{ secrets.PORT }}
-      #     script: |
-      #       docker restart student07
-
       - name: Clear target directory
         uses: appleboy/ssh-action@v0.1.4
         with:
